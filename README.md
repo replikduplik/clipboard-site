@@ -75,13 +75,25 @@ The product is live and feature-complete in its first full form: the desk holds 
 
 Each screen is a desk object opened by zooming in — the data *is* the object.
 
-| The newspaper — standings | The tactic board — shot charts |
-|---------------------------|--------------------------------|
-| ![Standings in the newspaper](assets/newspaper.png) | ![Tactic board with connected shot charts](assets/tactic-board.png) |
+**The newspaper — standings**
+![Standings in the newspaper](assets/newspaper.png)
+The full table unfolds like a sports page: rank and movement, record, points for/against, home/away splits, and a last-five form strip, with the playoff and play-in cut lines drawn right across the standings.
 
-| The folders — team index | A ticket — one game | The agenda — fixtures |
-|--------------------------|---------------------|-----------------------|
-| ![Team folders](assets/folders.png) | ![A game ticket](assets/ticket.png) | ![The fixture agenda](assets/agenda.png) |
+**The tactic board — shot charts**
+![Tactic board with connected shot charts](assets/tactic-board.png)
+The signature screen. A finished game opens as two half-court shot charts — makes and misses per team, with 2P/3P splits and the five-man lineup — and you can page through every game of the round.
+
+**The folders — team index**
+![Team folders](assets/folders.png)
+The season's teams as a row of tabbed folders, alphabetised and colour-coded by club ink. Hover a tab and its cover rises; it's the way into any single team.
+
+**A ticket — one game**
+![A game ticket](assets/ticket.png)
+Every fixture is a torn ticket — home and away, date, tip-off time and venue, with the rest of the day's games stacked underneath. One button opens the game straight on the tactic board.
+
+**The agenda — fixtures**
+![The fixture agenda](assets/agenda.png)
+The schedule as a week-to-view desk agenda: days down the page with scores once played, and double-game weeks flagged at the top.
 
 ---
 
