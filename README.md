@@ -74,11 +74,15 @@ The product is live and feature-complete in its first full form: the desk holds 
 
 ## Screenshots
 
-<!-- Drop the files listed in assets/README.md next to this README, then these will render. -->
+Each screen is a desk object opened by zooming in — the data *is* the object.
 
-| Desk | Newspaper (standings) | Tactic board |
-|------|----------------------|--------------|
-| ![Desk](assets/desk.png) | ![Newspaper](assets/newspaper.png) | ![Tactic board](assets/tactic-board.png) |
+| The newspaper — standings | The tactic board — shot charts |
+|---------------------------|--------------------------------|
+| ![Standings in the newspaper](assets/newspaper.png) | ![Tactic board with connected shot charts](assets/tactic-board.png) |
+
+| The folders — team index | A ticket — one game | The agenda — fixtures |
+|--------------------------|---------------------|-----------------------|
+| ![Team folders](assets/folders.png) | ![A game ticket](assets/ticket.png) | ![The fixture agenda](assets/agenda.png) |
 
 ---
 
