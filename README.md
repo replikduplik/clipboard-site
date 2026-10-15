@@ -8,7 +8,6 @@ Instead of tables and dashboards, Clipboard renders the season as a 3D coach's r
 
 > Personal project · built and maintained solo · source code is in a private repository.
 
-<!-- Replace with a real capture — see assets/README.md -->
 ![The coach's desk](assets/desk.png)
 
 ---
