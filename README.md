@@ -69,7 +69,16 @@ flowchart LR
 
 ## Status
 
-The product is live and feature-complete in its first full form: the desk holds the newspaper (standings), tickets (games), agenda (fixtures), tactic board (finished + live), folders, and a few atmosphere objects. Current work is on 3D lighting and materials, phone layout, and polish.
+Clipboard is live in its **v1** form: the coach's desk and its objects — the newspaper (standings), tickets (games), the agenda (fixtures), the folders (team index), and the tactic board for both finished and live games. Day-to-day work is on 3D lighting and materials, the phone layout, and polish.
+
+## Where it's going
+
+v1 renders the season; next is making the desk *think* — still all SQL, statistics and rules, no AI, no paid services.
+
+- **The scout notebook.** A dedicated place on the desk for deeper analysis — win probability, excitement and clutch scores, matchup twins, rotation and lineup breakdowns — computed from the same raw layer.
+- **A deeper archive.** Full game detail for past seasons (back to 2016), so form, trends and head-to-heads reach further back.
+- **A personal layer.** A prediction slip stamped right or wrong at the final whistle (with a season-long consistency score), and followed games collecting as tickets into a season keepsake.
+- **More of the room.** Match-day lighting that shifts toward tip-off, optional sound (paper, chalk, a distant bounce), and a shareable snapshot of the desk.
 
 ## Screenshots
 
