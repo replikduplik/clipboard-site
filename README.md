@@ -33,17 +33,17 @@ A small TypeScript monorepo, strict everywhere.
 
 ```
 apps/web        React + Vite SPA — the 3D desk (react-three-fiber) with HTML content layered on top
-apps/api        Hono — /api/* endpoints, serves the web build, SSE for live updates
+apps/api        Hono — /api/* endpoints, serves the web build
 apps/worker     Always-on Node service — polls the EuroLeague API on its own schedule
 packages/shared Zod schemas, types, season / club / position constants
 ```
 
 A few decisions I'm happy with:
 
-- **Raw first, then validated.** Every EuroLeague response is stored verbatim as JSONB *before* anything parses it. Normalized tables (`games`, `teams`, `players`, `shots`, `plays`, `box_scores`, `standings`) are derived from that raw layer. When the (unofficial, undocumented) API changes, or a new derived idea comes up, it's reprocessed from raw — no re-fetching, no lost history.
+- **Raw first, then validated.** Every EuroLeague response is stored verbatim as JSONB *before* anything parses it — normalized tables (`games`, `boxscore_players`, `pbp_events`, `shots`, `standings`, `people`) are derived from that raw layer. An unchanged response isn't rewritten (content hash check); once a game closes, only its last raw response per endpoint is kept. When the (unofficial, undocumented) API changes, or a new derived idea comes up, it's reprocessed from that layer.
 - **Flexible schemas, loud anomalies.** Zod schemas are permissive (one malformed record shouldn't drop a whole season fetch). Instead, a post-normalize anomaly counter feeds `/api/health`, which flips to `degraded` when something looks off.
-- **A worker that changes gear.** Calm mode pulls fixtures and standings hourly; it tightens 30 minutes before tip-off; in live mode it fetches box score, play-by-play and points every 15–30 s with exponential backoff on 429/5xx; on the final whistle it takes one last full snapshot and computes the derived data.
-- **One address, no CORS.** Web and API ship from a single service at `clipboard.<domain>`; `/api/*` is the API, everything else is the SPA. Live SSE stays alive through Cloudflare's ~100 s idle cut with a heartbeat every 15–20 s.
+- **A worker that changes gear.** Idle mode polls hourly; on a match day without anything live yet, it tightens to every 2 minutes to catch tip-off; fixtures, standings and rosters refresh on a 30-minute baseline. Once a game goes live, box score, play-by-play and shots are polled on a short interval with exponential backoff on 429/5xx. At the final whistle it takes one last full fetch and marks the game closed.
+- **One address, no CORS.** Web and API ship from a single service at `clipboard.<domain>`; `/api/*` is the API, everything else is the SPA. The client polls every 10 s while a game is live and only while its tab is visible — no persistent connection to keep alive.
 
 ### Architecture
 
@@ -52,7 +52,7 @@ flowchart LR
     EL["EuroLeague API<br/>(unofficial)"] -->|raw JSONB| W[apps/worker]
     W -->|Zod → normalize| PG[(Postgres)]
     PG --> API[apps/api · Hono]
-    API -->|/api/* + SSE| WEB[apps/web · R3F SPA]
+    API -->|/api/*| WEB[apps/web · R3F SPA]
     WEB --> U((Coach's desk))
 ```
 
@@ -69,7 +69,7 @@ flowchart LR
 
 ## Status
 
-Clipboard is live in its **v1** form: the coach's desk and its objects — the newspaper (standings), tickets (games), the agenda (fixtures), the folders (team index), and the tactic board for both finished and live games. Day-to-day work is on 3D lighting and materials, the phone layout, and polish.
+Clipboard is live in its **v1** form: the coach's desk and its objects — the newspaper (standings), tickets (games), the agenda (fixtures), the folders (team index), and the tactic board for both finished and live games. The phone layout and hover labels are done; next up is the scout notebook and the analysis layer underneath it.
 
 ## Where it's going
 
